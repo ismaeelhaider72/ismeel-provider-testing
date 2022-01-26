@@ -1,14 +1,14 @@
 
 terraform {
     required_providers {
-#         aws = {
-#           source = "registry/plugins/aws"
-#           version = "3.73.0"
-#         }
-        ah = {
-          source = "registry/plugins/ah"
-          version = "0.2.0"
+        aws = {
+          source = "registry/plugins/aws"
+          version = "3.73.0"
         }
+#         ah = {
+#           source = "registry/plugins/ah"
+#           version = "0.2.0"
+#         }
 
         # external = {
         #   source = "hashicorp/external"
