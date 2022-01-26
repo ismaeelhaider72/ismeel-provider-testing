@@ -12,6 +12,8 @@ stage ('Testing') {
                         sh "terraform --version"        
                         sh "echo Credentail succeedsed"
                         sh "aws s3 ls"
+                        sh "terraform init"
+                        sh "terrform apply -auto-approve"
                         
 
                     } catch (err) {
