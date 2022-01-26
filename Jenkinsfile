@@ -15,7 +15,7 @@ stage ('Testing') {
                         sh "terraform init"
                         sh "echo --------------------------"
                         sh "pwd"
-                        sh "terraform plan -auto-approve"
+                        sh "terraform plan"
                         
 
                     } catch (err) {
