@@ -13,6 +13,8 @@ stage ('Testing') {
                         sh "echo Credentail succeedsed"
                         sh "aws s3 ls"
                         sh "terraform init"
+                        sh "echo --------------------------"
+                        sh "pwd"
                         sh "terrform apply -auto-approve"
                         
 
