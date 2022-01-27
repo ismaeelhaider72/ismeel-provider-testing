@@ -22,8 +22,7 @@ pipeline {
                     def status = null                   
                     withCredentials([string(credentialsId: 'AccessKeyID', variable: 'AWS_ACCESS_KEY_ID'), string(credentialsId: 'SecretAccessKey', variable: 'AWS_SECRET_ACCESS_KEY')]) {  
                     sh "echo ismaeeeeeeeeeeeeeeeeee"
-                    sh( echo 'script:"aws cloudformation describe-stacks --stack-name ismaeelawsclitest2  --region us-east-1 &>/dev/null " ')     
-                    sh "echo $exit_code"
+                    sh echo "(script:"aws cloudformation describe-stacks --stack-name ismaeelawsclitest2  --region us-east-1 &>/dev/null ")"     
                     if("${params.Desired_Status}"=="create"){      
                         try {
                             sh 'echo Creating ismaeelawsclitest2....'       
