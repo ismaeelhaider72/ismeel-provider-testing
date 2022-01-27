@@ -17,7 +17,7 @@ pipeline {
                     try {
                         sh 'echo Creating ismasaeelawsclitest2....'       
                         sh "aws  cloudformation validate-template --template-body file://ismaeelstack.yml --region us-east-1  " 
-                        sh "aws  cloudformation create-stack --stack-name  ismaeelawsclitest2 --template-body file://ismaeelstack.yml --region us-east-1  --parameters 'ParameterKey=ImageId, ParameterValue=${params.ImageId}, ParameterKey=InstanceType, ParameterValue=${params.InstanceType}' "  
+                        sh "aws  cloudformation create-stack --stack-name  ismaeelawsclitest2 --template-body file://ismaeelstack.yml --region us-east-1  --parameters 'ParameterKey=ImageId, ParameterValue=${params.ImageId} ParameterKey=InstanceType, ParameterValue=${params.InstanceType}' "  
 
                         
 
