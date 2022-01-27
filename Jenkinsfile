@@ -40,7 +40,10 @@ pipeline {
                         } catch (err) {
                             sh "echo cloudformation creation failed OR stack already Exist"
 
-                        } 
+                        }
+                        else{
+                            sh"echo "stack [ismaeelawsclitest2] already existing"
+                        }     
                   }
                   if (stack && "${params.Desired_Status}"=="delete" ) {  
                       
