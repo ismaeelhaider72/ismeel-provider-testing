@@ -44,7 +44,7 @@ pipeline {
 
                         } 
                   }
-                  if (stack -eq "null") {  
+                  if [stack -eq "null"] {  
                       
                       sh "aws cloudformation delete-stack --stack-name ismaeelawsclitest2 --region us-east-1"
                       sh "echo Stack deleted Successfully"
