@@ -3,7 +3,6 @@ AWSTemplateFormatVersion: "2010-09-09"
 Parameters:
   ImageId:
     Type: String
-    Default: ami-08e4e35cccc6189f4
   InstanceType:
     Type: String
     Default: t2.micro
