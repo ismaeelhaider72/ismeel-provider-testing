@@ -36,13 +36,13 @@ pipeline {
                             sh "aws  cloudformation validate-template --template-body file://ismaeelstack.yml --region us-east-1  " 
                             sh "aws  cloudformation create-stack --stack-name  ismaeelawsclitest2 --template-body file://ismaeelstack.yml --region us-east-1  --parameters ParameterKey=ImageId,ParameterValue=${params.ImageId} ParameterKey=InstanceType,ParameterValue=${params.InstanceType} "  
                         } catch (err) {
-                            sh "echo cloudformation creation failed OR stack already Exist"
+                            sh "echo cloudformation creation failed"
 
                         }
      
                   }
                        else{
-                            sh"echo stack [ismaeelawsclitest2] already existing"
+                            sh"echo stack [ismaeelawsclitest2] existed"
                         }                   
                   if (stack && "${params.Desired_Status}"=="delete" ) {  
                       
