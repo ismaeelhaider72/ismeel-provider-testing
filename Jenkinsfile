@@ -28,7 +28,7 @@ pipeline {
                     stack=true
                     }
                         catch (err){
-                            echo stack
+                            stack = false
                         }     
 //                     echo res  
                     if("${params.Desired_Status}"=="create"){      
