@@ -38,7 +38,7 @@ pipeline {
 
                         } 
                   }
-                  else if (!res ) {  
+                  else if (res != "ROLLBACK_COMPLETE" and res != "UPDATE_COMPLETE" and res != "CREATE_COMPLETE") {  
                       
                       sh "aws cloudformation delete-stack --stack-name ismaeelawsclitest2 --region us-east-1"
                   }                
