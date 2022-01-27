@@ -20,7 +20,7 @@ pipeline {
           steps {                
                 script {
                     withCredentials([string(credentialsId: 'AccessKeyID', variable: 'AWS_ACCESS_KEY_ID'), string(credentialsId: 'SecretAccessKey', variable: 'AWS_SECRET_ACCESS_KEY')]) {  
-                    if(${params.Desired_Status}=="create"){      
+                    if("${params.Desired_Status}"=="create"){      
                         try {
                             sh 'echo Creating ismaeelawsclitest2....'       
                             sh "aws  cloudformation validate-template --template-body file://ismaeelstack.yml --region us-east-1  " 
