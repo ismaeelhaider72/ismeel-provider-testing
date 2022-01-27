@@ -29,8 +29,6 @@ pipeline {
                     }
                         catch (err){
                             echo "stack not exist in this region"
-//                             stack = false
-//                             sh 'exit 1'
                         }     
                     if("${params.Desired_Status}"=="create" && !stack){      
                         try {                           
@@ -41,10 +39,11 @@ pipeline {
                             sh "echo cloudformation creation failed OR stack already Exist"
 
                         }
-                        else{
-                            sh"echo "stack [ismaeelawsclitest2] already existing"
-                        }     
+     
                   }
+                       else{
+                            sh"echo stack [ismaeelawsclitest2] already existing"
+                        }                   
                   if (stack && "${params.Desired_Status}"=="delete" ) {  
                       
                       sh "aws cloudformation delete-stack --stack-name ismaeelawsclitest2 --region us-east-1"
