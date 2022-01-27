@@ -20,7 +20,7 @@ pipeline {
           steps {                
                 script {
                     def status = null
-                    def res = "siameel"
+                    def res = "stack does not exit"
                     withCredentials([string(credentialsId: 'AccessKeyID', variable: 'AWS_ACCESS_KEY_ID'), string(credentialsId: 'SecretAccessKey', variable: 'AWS_SECRET_ACCESS_KEY')]) {  
                     sh "echo ismaeeeeeeeeeeeeeeeeee"
                     try{    
