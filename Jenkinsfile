@@ -19,18 +19,23 @@ pipeline {
         stage ('Testing') {            
           steps {                
                 script {
-                    withCredentials([string(credentialsId: 'AccessKeyID', variable: 'AWS_ACCESS_KEY_ID'), string(credentialsId: 'SecretAccessKey', variable: 'AWS_SECRET_ACCESS_KEY')]) {    
-                    try {
-                        sh 'echo Creating ismaeelawsclitest2....'       
-                        sh "aws  cloudformation validate-template --template-body file://ismaeelstack.yml --region us-east-1  " 
-                        sh "aws  cloudformation ${params.Desired_Status}-stack --stack-name  ismaeelawsclitest2 --template-body file://ismaeelstack.yml --region us-east-1  --parameters ParameterKey=ImageId,ParameterValue=${params.ImageId} ParameterKey=InstanceType,ParameterValue=${params.InstanceType} "  
+                    withCredentials([string(credentialsId: 'AccessKeyID', variable: 'AWS_ACCESS_KEY_ID'), string(credentialsId: 'SecretAccessKey', variable: 'AWS_SECRET_ACCESS_KEY')]) {  
+                    if(${params.Desired_Status}=="create"){      
+                        try {
+                            sh 'echo Creating ismaeelawsclitest2....'       
+                            sh "aws  cloudformation validate-template --template-body file://ismaeelstack.yml --region us-east-1  " 
+                            sh "aws  cloudformation create-stack --stack-name  ismaeelawsclitest2 --template-body file://ismaeelstack.yml --region us-east-1  --parameters ParameterKey=ImageId,ParameterValue=${params.ImageId} ParameterKey=InstanceType,ParameterValue=${params.InstanceType} "  
 
-                        
+                            
 
-                    } catch (err) {
-                        sh "echo failed jenkins"
+                        } catch (err) {
+                            sh "echo failed jenkins"
 
-                    }                
+                        } 
+                  }
+                  else{
+                      sh "aws cloudformation delete-stack --stack-name ismaeelawsclitest2 -region us-east-1"
+                  }                
 
                  }                     
                 }
@@ -39,4 +44,3 @@ pipeline {
                                         
         }
 }
-
