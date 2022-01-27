@@ -1,13 +1,13 @@
 pipeline {
     agent any
     parameters {
-    string([
+    string(
         name: 'ImageId',
         defaultValue: "ami-08e4e35cccc6189f4",
-        description: 'images stuff'],
-        [name: 'InstanceType',
+        description: 'images stuff',
+        name: 'InstanceType',
         defaultValue: "t2.small",
-        description: 'instance type'])
+        description: 'instance type')
     } 
     stages {
         stage ('Testing') {            
