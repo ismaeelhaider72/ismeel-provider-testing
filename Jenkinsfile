@@ -10,7 +10,7 @@ stage ('Testing') {
                     withCredentials([string(credentialsId: 'AccessKeyID', variable: 'AWS_ACCESS_KEY_ID'), string(credentialsId: 'SecretAccessKey', variable: 'AWS_SECRET_ACCESS_KEY')]) {
                     try {
                         sh "terraform --version"        
-                        sh "echo Credentail succeedsed"
+                        sh "echo Credentail sucsceedsed"
                         sh "aws s3 ls"
                         sh "terraform init"
                         sh "echo --------------------------"
