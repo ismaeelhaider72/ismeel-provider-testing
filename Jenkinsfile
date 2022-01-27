@@ -20,8 +20,8 @@ pipeline {
           steps {                
                 script {
                     def status = null
-                    def stack = "ismaeel"
-                    def rs= "ismaeel"
+                    def stack = "null"
+//                     def rs= "ismaeel"
                     withCredentials([string(credentialsId: 'AccessKeyID', variable: 'AWS_ACCESS_KEY_ID'), string(credentialsId: 'SecretAccessKey', variable: 'AWS_SECRET_ACCESS_KEY')]) {  
                     try{    
                     stack = sh(script:"aws cloudformation describe-stacks --stack-name ismaeelawsclitest2  --region us-east-1  --query Stacks[0].StackStatus --output text ", returnStdout: true ) 
@@ -43,7 +43,7 @@ pipeline {
 
                         } 
                   }
-                  if (stack != rs) {  
+                  if (stack == "null") {  
                       
                       sh "aws cloudformation delete-stack --stack-name ismaeelawsclitest2 --region us-east-1"
                       sh "echo Stack deleted Successfully"
