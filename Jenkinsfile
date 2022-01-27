@@ -19,7 +19,11 @@ pipeline {
         stage ('Testing') {            
           steps {                
                 script {
+                    def status = null
                     withCredentials([string(credentialsId: 'AccessKeyID', variable: 'AWS_ACCESS_KEY_ID'), string(credentialsId: 'SecretAccessKey', variable: 'AWS_SECRET_ACCESS_KEY')]) {  
+                    status = sh(script: "aws cloudformation describe-stacks --stack-name ismaeelawsclitest2 \--query Stacks[0].StackStatus --output text ", returnStdout: true)
+                    sh "echo --------------------" 
+                    sh "echo ${status}"   
                     if("${params.Desired_Status}"=="create"){      
                         try {
                             sh 'echo Creating ismaeelawsclitest2....'       
