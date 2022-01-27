@@ -5,6 +5,7 @@ Parameters:
     Type: String
   InstanceType:
     Type: String
+    default: t2.medium
 Resources:
   MyEC2Instance:
     Type: AWS::EC2::Instance
