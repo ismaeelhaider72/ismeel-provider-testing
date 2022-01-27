@@ -39,7 +39,7 @@ pipeline {
               }
 
             } else {
-              sh "echo stack [ismaeelawsclitest2] already existing"
+              sh "echo stack [ismaeelawsclitest2] existing"
             }
             if (stack && "${params.Desired_Status}" == "delete") {
 
