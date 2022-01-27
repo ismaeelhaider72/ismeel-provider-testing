@@ -2,8 +2,8 @@ pipeline {
     agent any
     parameters {
     choice(
-        name: 'myParameter',
-        choices: "Option1\nOption2",
+        name: 'InstanceType',
+        choices: "t2.micro\nt2.small\nt2.large\nt2.medium",
         description: 'interesting stuff' )
     }    
     stages {
