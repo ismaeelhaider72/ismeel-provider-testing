@@ -11,7 +11,7 @@ stage ('Testing') {
                     try {
                         sh 'echo Creating ismaeelawsclitest2....'       
                         sh "aws cloudformation validate-template --template-body file://ismaeelstack.yml "
-                        sh "aws cloudformation create-stack --stack-name  ismaeelawsclitest2 --template-body file://ismaeelstack.yml  "
+                        sh "aws --region us-east-1 cloudformation create-stack --stack-name  ismaeelawsclitest2 --template-body file://ismaeelstack.yml  "
 
                         
 
