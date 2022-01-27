@@ -29,6 +29,7 @@ pipeline {
                     }
                         catch (err){
                             echo "stack not exist in this region"
+                            sh 'exit 1'
                         }     
                     if("${params.Desired_Status}"=="create"){      
                         try {
