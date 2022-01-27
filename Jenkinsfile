@@ -26,7 +26,10 @@ pipeline {
                     try{    
                     res =sh(script:"aws cloudformation describe-stacks --stack-name ismaeelawsclitest2  --region us-east-1  --query Stacks[0].StackStatus --output text ", returnStdout: true ) 
                     }
-                    echo res  
+                        catch (err){
+                            echo res
+                        }     
+//                     echo res  
                     if("${params.Desired_Status}"=="create"){      
                         try {
                             sh 'echo Creating ismaeelawsclitest2....'       
