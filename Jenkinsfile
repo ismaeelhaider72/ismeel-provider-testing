@@ -30,7 +30,7 @@ pipeline {
             }
             if ("${params.Desired_Status}" == "create" && !stack) {
               try {
-                echo Creating ismaeelawsclitest2....
+                echo "Creating ismaeelawsclitest2......"
                 sh "aws  cloudformation validate-template --template-body file://ismaeelstack.yml --region us-east-1  "
                 sh "aws  cloudformation create-stack --stack-name  ismaeelawsclitest2 --template-body file://ismaeelstack.yml --region us-east-1  --parameters ParameterKey=ImageId,ParameterValue=${params.ImageId} ParameterKey=InstanceType,ParameterValue=${params.InstanceType} "
               } catch (err) {
@@ -43,7 +43,7 @@ pipeline {
             }
             if (stack && "${params.Desired_Status}" == "delete") {
               
-              echo Deleting stack .........
+              echo "Deleting stack ........."
               sh "aws cloudformation delete-stack --stack-name ismaeelawsclitest2 --region us-east-1"
               sh "echo Stack deleted Successfully"
             }
