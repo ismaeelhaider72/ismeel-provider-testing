@@ -20,7 +20,7 @@ pipeline {
           steps {                
                 script {
                     def status = null
-                    def stack = "null"
+                    def stack = false
                     def rs= "null"
                     withCredentials([string(credentialsId: 'AccessKeyID', variable: 'AWS_ACCESS_KEY_ID'), string(credentialsId: 'SecretAccessKey', variable: 'AWS_SECRET_ACCESS_KEY')]) {  
                     try{    
@@ -29,7 +29,7 @@ pipeline {
                     }
                         catch (err){
                             echo "stack not exist in this region"
-                            stack = false
+//                             stack = false
 //                             sh 'exit 1'
                         }     
                     if("${params.Desired_Status}"=="create"){      
