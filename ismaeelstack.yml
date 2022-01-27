@@ -6,7 +6,7 @@ Parameters:
     Default: ami-08e4e35cccc6189f4
   InstanceType:
     Type: String
-    Default: t2.medium
+    Default: t2.micro
 Resources:
   MyEC2Instance:
     Type: AWS::EC2::Instance
