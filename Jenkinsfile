@@ -35,17 +35,12 @@ pipeline {
 
                         } 
                   }
-                  if("${params.Desired_Status}"=="delete"){
-                      try{
-                            sh "aws cloudformation delete-stack --stack-name ismaeelawsclitest2 --region us-east-1"
-                      }
-                      catch(err){
-                          sh "echo No Existing stack"
-                      }
+                  else{
+                      sh "aws cloudformation delete-stack --stack-name ismaeelawsclitest2 --region us-east-1"
                   }                
                 }
                 else{
-                    sh "echo Does not exit"
+                    sh "echo Stack Does not exit"
                 }
                                      
                 }
@@ -53,5 +48,5 @@ pipeline {
         }
                                         
         }
-}
+    }
 }
