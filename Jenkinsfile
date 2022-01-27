@@ -23,7 +23,7 @@ pipeline {
                     def res
                     withCredentials([string(credentialsId: 'AccessKeyID', variable: 'AWS_ACCESS_KEY_ID'), string(credentialsId: 'SecretAccessKey', variable: 'AWS_SECRET_ACCESS_KEY')]) {  
                     sh "echo ismaeeeeeeeeeeeeeeeeee"
-                    res =sh aws cloudformation describe-stacks --stack-name ismaeelawsclitest2  --region us-east-1 
+                    res =sh(script:"aws cloudformation describe-stacks --stack-name ismaeelawsclitest2  --region us-east-1 &>/dev/null " ) 
                     echo  $res   
                     if("${params.Desired_Status}"=="create"){      
                         try {
