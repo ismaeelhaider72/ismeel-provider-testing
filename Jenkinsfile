@@ -20,8 +20,6 @@ pipeline {
           steps {                
                 script {
                     def status = null
-                    status = sh "aws cloudformation describe-stacks --stack-name ismaeelawsclitest2  --region us-east-1"
-                    sh "echo $status"
                     withCredentials([string(credentialsId: 'AccessKeyID', variable: 'AWS_ACCESS_KEY_ID'), string(credentialsId: 'SecretAccessKey', variable: 'AWS_SECRET_ACCESS_KEY')]) {
                     status = sh "aws cloudformation describe-stacks --stack-name ismaeelawsclitest2  --region us-east-1"
                     sh "echo $status"
