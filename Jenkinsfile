@@ -41,7 +41,7 @@ pipeline {
                             
 
                         } catch (err) {
-                            sh "echo cloudformation creation failed"
+                            sh "echo cloudformation creation failed OR stack already Exist"
 
                         } 
                   }
