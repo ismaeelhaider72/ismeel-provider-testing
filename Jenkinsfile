@@ -20,9 +20,9 @@ pipeline {
           steps {                
                 script {
                     def status = null                   
-                    withCredentials([string(credentialsId: 'AccessKeyID', variable: 'AWS_ACCESS_KEY_ID'), string(credentialsId: 'SecretAccessKey', variable: 'AWS_SECRET_ACCESS_KEY')]) { 
-                    def exit_code= sh(script:"aws cloudformation describe-stacks --stack-name ismaeelawsclitest2  --region us-east-1 &>/dev/null " ) 
-                    sh "echo ismaeeeeeeeeeeeeeeeeee"   
+                    withCredentials([string(credentialsId: 'AccessKeyID', variable: 'AWS_ACCESS_KEY_ID'), string(credentialsId: 'SecretAccessKey', variable: 'AWS_SECRET_ACCESS_KEY')]) {  
+                    sh "echo ismaeeeeeeeeeeeeeeeeee"
+                    sh( echo 'script:"aws cloudformation describe-stacks --stack-name ismaeelawsclitest2  --region us-east-1 &>/dev/null " ')     
                     sh "echo $exit_code"
                     if("${params.Desired_Status}"=="create"){      
                         try {
