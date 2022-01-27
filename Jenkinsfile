@@ -1,9 +1,10 @@
 pipeline {
     agent any
-    properties([parameters([choice(choices: 't2.micro\nt2.small\nt2.medium\nt2.large', name: 'InstanceType')])    
+        
     stages {
 
 stage ('Testing') {
+      properties([parameters([choice(choices: 't2.micro\nt2.small\nt2.medium\nt2.large', name: 'InstanceType')])  
       steps {
                 
                 script {
