@@ -20,14 +20,14 @@ pipeline {
           steps {                
                 script {
                     def status = null
-                    def res = "stack does not exit"
+                    def stack = "null"
                     withCredentials([string(credentialsId: 'AccessKeyID', variable: 'AWS_ACCESS_KEY_ID'), string(credentialsId: 'SecretAccessKey', variable: 'AWS_SECRET_ACCESS_KEY')]) {  
                     sh "echo ismaeeeeeeeeeeeeeeeeee"
                     try{    
-                    res =sh(script:"aws cloudformation describe-stacks --stack-name ismaeelawsclitest2  --region us-east-1  --query Stacks[0].StackStatus --output text ", returnStdout: true ) 
+                    stack =sh(script:"aws cloudformation describe-stacks --stack-name ismaeelawsclitest2  --region us-east-1  --query Stacks[0].StackStatus --output text ", returnStdout: true ) 
                     }
                         catch (err){
-                            echo res
+                            echo stack
                         }     
 //                     echo res  
                     if("${params.Desired_Status}"=="create"){      
@@ -43,7 +43,7 @@ pipeline {
 
                         } 
                   }
-                  else if (res != "ROLLBACK_COMPLETE" && res != "UPDATE_COMPLETE" && res != "CREATE_COMPLETE") {  
+                  else if (stack != "null") {  
                       
                       sh "aws cloudformation delete-stack --stack-name ismaeelawsclitest2 --region us-east-1"
                       sh "echo Stack deleted Successfully"
