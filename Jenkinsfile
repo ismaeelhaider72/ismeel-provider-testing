@@ -9,6 +9,11 @@ pipeline {
         name: 'InstanceType',
         defaultValue: "t2.small",
         description: 'instance type' )
+    choice(
+        name: 'Desired_Status',
+        choices: "create\ndelete",
+        description: 'Create / Delete Stack' )        
+
     } 
     stages {
         stage ('Testing') {            
@@ -18,7 +23,7 @@ pipeline {
                     try {
                         sh 'echo Creating ismaeelawsclitest2....'       
                         sh "aws  cloudformation validate-template --template-body file://ismaeelstack.yml --region us-east-1  " 
-                        sh "aws  cloudformation create-stack --stack-name  ismaeelawsclitest2 --template-body file://ismaeelstack.yml --region us-east-1  --parameters ParameterKey=ImageId,ParameterValue=${params.ImageId} ParameterKey=InstanceType,ParameterValue=${params.InstanceType} "  
+                        sh "aws  cloudformation ${params.Desired_Status}-stack --stack-name  ismaeelawsclitest2 --template-body file://ismaeelstack.yml --region us-east-1  --parameters ParameterKey=ImageId,ParameterValue=${params.ImageId} ParameterKey=InstanceType,ParameterValue=${params.InstanceType} "  
 
                         
 
@@ -34,3 +39,4 @@ pipeline {
                                         
         }
 }
+
