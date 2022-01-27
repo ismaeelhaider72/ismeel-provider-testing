@@ -1,6 +1,9 @@
 AWSTemplateFormatVersion: "2010-09-09"
 
 Parameters:
+  ImageId:
+    Type: String
+    default : ami:3asda45324233
   InstanceType:
     Type: String
     default: t2.medium
