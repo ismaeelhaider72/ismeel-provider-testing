@@ -26,9 +26,9 @@ pipeline {
               stack = sh(script: "aws cloudformation describe-stacks --stack-name ismaeelawsclitest2  --region us-east-1  --query Stacks[0].StackStatus --output text ", returnStdout: true)
               println stack.getClass(); 
 //            Sourcesystem = "CREATE_COMPLETE"
-              if [ "$Sourcesystem" = stack ]; then 
+              if ("$Sourcesystem" = stack ){ 
                   echo "Sourcesystem Matched"
-              
+              }
             } catch (err) {
               echo "stack not exist in this region"
             }
