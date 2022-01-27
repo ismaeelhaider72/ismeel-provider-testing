@@ -28,7 +28,7 @@ pipeline {
                     stack=true
                     }
                         catch (err){
-                            stack = false
+                            echo "stack not exist in this region"
                         }     
 //                     echo res  
                     if("${params.Desired_Status}"=="create"){      
