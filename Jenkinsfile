@@ -52,9 +52,6 @@ pipeline {
                       sh "echo Stack deleted Successfully"
                   }                
                 
-                else{
-                    sh "echo Stack exit"
-                }
                                      
                 }
       }
