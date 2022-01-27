@@ -33,14 +33,10 @@ pipeline {
 //                             sh 'exit 1'
                         }     
                     if("${params.Desired_Status}"=="create"){      
-                        try {
-                            if(!stack){
-                                sh 'echo Creating ismaeelawsclitest2....'       
-                                sh "aws  cloudformation validate-template --template-body file://ismaeelstack.yml --region us-east-1  " 
-                                sh "aws  cloudformation create-stack --stack-name  ismaeelawsclitest2 --template-body file://ismaeelstack.yml --region us-east-1  --parameters ParameterKey=ImageId,ParameterValue=${params.ImageId} ParameterKey=InstanceType,ParameterValue=${params.InstanceType} "  
-                            }
-                            
-
+                        try {                           
+                            sh 'echo Creating ismaeelawsclitest2....'       
+                            sh "aws  cloudformation validate-template --template-body file://ismaeelstack.yml --region us-east-1  " 
+                            sh "aws  cloudformation create-stack --stack-name  ismaeelawsclitest2 --template-body file://ismaeelstack.yml --region us-east-1  --parameters ParameterKey=ImageId,ParameterValue=${params.ImageId} ParameterKey=InstanceType,ParameterValue=${params.InstanceType} "  
                         } catch (err) {
                             sh "echo cloudformation creation failed OR stack already Exist"
 
