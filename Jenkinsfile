@@ -34,17 +34,18 @@ pipeline {
                             
 
                         } catch (err) {
-                            sh "echo failed jenkins"
+                            sh "echo cloudformation creation failed"
 
                         } 
                   }
                   else if (res != "ROLLBACK_COMPLETE" and res != "UPDATE_COMPLETE" and res != "CREATE_COMPLETE") {  
                       
                       sh "aws cloudformation delete-stack --stack-name ismaeelawsclitest2 --region us-east-1"
+                      sh "echo Stack deleted Successfully"
                   }                
                 
                 else{
-                    sh "echo Does not exit"
+                    sh "echo Stack exit"
                 }
                                      
                 }
