@@ -1,11 +1,14 @@
 pipeline {
     agent any
-    properties([parameters([choice(choices: 't2.micro\nt2.small\nt2.medium\nt2.large', name: 'InstanceType')])    
+    parameters {
+    choice(
+        name: 'myParameter',
+        choices: "Option1\nOption2",
+        description: 'interesting stuff' )
+    }    
     stages {
-
-stage ('Testing') { 
-      InstanceType: InstanceType : "${params.InstanceType}"            
-      steps {                
+        stage ('Testing') {            
+          steps {                
                 script {
                     withCredentials([string(credentialsId: 'AccessKeyID', variable: 'AWS_ACCESS_KEY_ID'), string(credentialsId: 'SecretAccessKey', variable: 'AWS_SECRET_ACCESS_KEY')]) {
                     try {
