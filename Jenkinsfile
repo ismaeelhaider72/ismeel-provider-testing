@@ -20,13 +20,13 @@ pipeline {
           steps {                
                 script {
                     def status = null
-                    status = sh "aws cloudformation describe-stacks --stack-name ismaeelawsclitest2 --query Stacks[0].StackStatus --output text --region us-east-1"
+                    status = sh "aws cloudformation describe-stacks --stack-name ismaeelawsclitest2  --region us-east-1"
                     sh "echo $status"
                     withCredentials([string(credentialsId: 'AccessKeyID', variable: 'AWS_ACCESS_KEY_ID'), string(credentialsId: 'SecretAccessKey', variable: 'AWS_SECRET_ACCESS_KEY')]) {  
                     if("${params.Desired_Status}"=="create"){      
                         try {
                             sh 'echo Creating ismaeelawsclitest2....'       
-                            sh "aws  cloudformation validate-template --template-body file://ismaeelstack.yml --region us-east-1  " 
+                            sh "aws  cloudformation validate-template --template-body file://ismaeelstack.yml --region us-east-1" 
                             sh "aws  cloudformation create-stack --stack-name  ismaeelawsclitest2 --template-body file://ismaeelstack.yml --region us-east-1  --parameters ParameterKey=ImageId,ParameterValue=${params.ImageId} ParameterKey=InstanceType,ParameterValue=${params.InstanceType} "  
 
                             
