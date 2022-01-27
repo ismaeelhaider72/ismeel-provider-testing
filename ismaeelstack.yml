@@ -3,10 +3,10 @@ AWSTemplateFormatVersion: "2010-09-09"
 Parameters:
   ImageId:
     Type: String
-    default: ami-08e4e35cccc6189f4"
+    Default: ami-08e4e35cccc6189f4"
   InstanceType:
     Type: String
-    default: t2.medium
+    Default: t2.medium
 Resources:
   MyEC2Instance:
     Type: AWS::EC2::Instance
