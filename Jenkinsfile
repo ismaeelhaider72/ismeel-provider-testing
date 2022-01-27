@@ -23,16 +23,13 @@ pipeline {
                     def stack = "ismaeel"
                     def rs= "ismaeel"
                     withCredentials([string(credentialsId: 'AccessKeyID', variable: 'AWS_ACCESS_KEY_ID'), string(credentialsId: 'SecretAccessKey', variable: 'AWS_SECRET_ACCESS_KEY')]) {  
-                    sh "echo ismaeeeeeeeeeeeeeeeeee"
                     try{    
                     stack = sh(script:"aws cloudformation describe-stacks --stack-name ismaeelawsclitest2  --region us-east-1  --query Stacks[0].StackStatus --output text ", returnStdout: true ) 
                     echo stack
-//                         stack=true
                     }
                         catch (err){
                             echo "stack not exist in this region"
                         }     
-//                     echo res  
                     if("${params.Desired_Status}"=="create"){      
                         try {
                             sh 'echo Creating ismaeelawsclitest2....'       
