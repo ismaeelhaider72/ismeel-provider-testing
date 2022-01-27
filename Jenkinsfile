@@ -33,8 +33,13 @@ pipeline {
 
                         } 
                   }
-                  else{
-                      sh "aws cloudformation delete-stack --stack-name ismaeelawsclitest2 --region us-east-1"
+                  if("${params.Desired_Status}"=="delete"){
+                      try{
+                            sh "aws cloudformation delete-stack --stack-name ismaeelawsclitest2 --region us-east-1"
+                      }
+                      catch(err){
+                          sh "echo No Existing stack"
+                      }
                   }                
 
                  }                     
