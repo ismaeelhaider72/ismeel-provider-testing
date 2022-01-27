@@ -32,7 +32,7 @@ pipeline {
 //                             stack = false
 //                             sh 'exit 1'
                         }     
-                    if("${params.Desired_Status}"=="create"){      
+                    if("${params.Desired_Status}"=="create" && !stack){      
                         try {                           
                             sh 'echo Creating ismaeelawsclitest2....'       
                             sh "aws  cloudformation validate-template --template-body file://ismaeelstack.yml --region us-east-1  " 
