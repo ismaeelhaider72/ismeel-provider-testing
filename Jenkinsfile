@@ -9,13 +9,10 @@ stage ('Testing') {
                 script {
                     withCredentials([string(credentialsId: 'AccessKeyID', variable: 'AWS_ACCESS_KEY_ID'), string(credentialsId: 'SecretAccessKey', variable: 'AWS_SECRET_ACCESS_KEY')]) {
                     try {
-                        sh "terraform --version"        
-                        sh "echo Credentail sucsceedsed"
-                        sh "aws s3 ls"
-                        sh "terraform init"
-                        sh "echo --------------------------"
-                        sh "pwd"
-                        sh "terraform destroy -auto-approve"
+                        sh 'echo Creating ismaeelawsclitest2....'       
+                        sh "aws cloudformation validate-template --template-body ile://ismaeelstack.yml "
+                        sh "aws cloudformation create-stack --stack-name  ismaeelawsclitest2 --template-body file://ismaeelstack.yml  "
+
                         
 
                     } catch (err) {
