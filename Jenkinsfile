@@ -1,14 +1,13 @@
 pipeline {
     agent any
     parameters {
-    string(
+    string([
         name: 'ImageId',
         defaultValue: "ami-08e4e35cccc6189f4",
-        description: 'images stuff',
-        name: 'InstanceType',
+        description: 'images stuff'],
+        [name: 'InstanceType',
         defaultValue: "t2.small",
-        description: 'instance type',       
-        )
+        description: 'instance type'])
     } 
     stages {
         stage ('Testing') {            
@@ -18,7 +17,7 @@ pipeline {
                     try {
                         sh 'echo Creating ismaaeelawsclitest2....'       
                         sh "aws  cloudformation validate-template --template-body file://ismaeelstack.yml --region us-east-1  " 
-                        sh "aws  cloudformation create-stack --stack-name  ismaeelawsclitest2 --template-body file://ismaeelstack.yml --region us-east-1  --parameters 'ParameterKey=ImageId, ParameterValue=${params.ImageId} ParameterKey=InstanceType, ParameterValue=${params.InstanceType}' "  
+                        sh "aws  cloudformation create-stack --stack-name  ismaeelawsclitest2 --template-body file://ismaeelstack.yml --region us-east-1  --parameters 'ParameterKey=ImageId, ParameterValue=${params.ImageId}, ParameterKey=InstanceType, ParameterValue=${params.InstanceType}' "  
 
                         
 
