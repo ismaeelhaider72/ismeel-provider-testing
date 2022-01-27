@@ -5,7 +5,6 @@ Parameters:
     Type: String
   InstanceType:
     Type: String
-    Default: t2.micro
 Resources:
   MyEC2Instance:
     Type: AWS::EC2::Instance
