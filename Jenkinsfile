@@ -22,23 +22,30 @@ pipeline {
                     def status = null
                     def stack = false
                     withCredentials([string(credentialsId: 'AccessKeyID', variable: 'AWS_ACCESS_KEY_ID'), string(credentialsId: 'SecretAccessKey', variable: 'AWS_SECRET_ACCESS_KEY')]) {  
-                    try{    
+                    // try{    
                     stack = sh(script:"aws cloudformation describe-stacks --stack-name ismaeelawsclitest2  --region us-east-1  --query Stacks[0].StackStatus --output text ", returnStdout: true ) 
-                    echo stack
-                    }
-                        catch (err){
-                            echo "stack not exist in this region"
-                        }     
+                    // echo stack
+                    // }
+                        // catch (err){
+                        //     echo "stack not exist in this region"
+                        // }
+                    try{         
                     if("${params.Desired_Status}"=="create" && !stack){      
                           
                             sh 'echo Creating ismaeelawsclitest2....'       
                             sh "aws  cloudformation validate-template --template-body file://ismaeelstack.yml --region us-east-1  " 
                             sh "aws  cloudformation create-stack --stack-name  ismaeelawsclitest2 --template-body file://ismaeelstack.yml --region us-east-1  --parameters ParameterKey=ImageId,ParameterValue=${params.ImageId} ParameterKey=InstanceType,ParameterValue=${params.InstanceType} "  
-                        } 
-                            
-                    else{
-                        sh "echo cloudformation creation failed OR stack already Exist"
                         }
+                        else{
+                            sh "echo creation failed"
+                        } 
+                    }
+                    catch (err){
+                        echo "stack exist in this region"
+                    }                            
+                    // else{
+                    //     sh "echo cloudformation creation failed OR stack already Exist"
+                    //     }
      
                                   
                     if (stack && "${params.Desired_Status}"=="delete" ) {  
