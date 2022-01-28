@@ -42,9 +42,6 @@ pipeline {
                         sh "aws cloudformation delete-stack --stack-name ismaeelawsclitest2 --region us-east-1"
                         sh "echo deleted Successfully"
                     }
-                    else{
-                        sh "echo stack already exists"    
-                    }
                 }
                    catch(err){
                        sh "echo can't deleted the stack"
