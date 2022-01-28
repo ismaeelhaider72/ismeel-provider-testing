@@ -23,15 +23,15 @@ pipeline {
                     def stack = false
                     withCredentials([string(credentialsId: 'AccessKeyID', variable: 'AWS_ACCESS_KEY_ID'), string(credentialsId: 'SecretAccessKey', variable: 'AWS_SECRET_ACCESS_KEY')]) {  
                   // stack not existed
-                    def t1 =sh "aws cloudformation describe-stacks --stack-name project-dev  --region us-east-1 2>/dev/null"
+                    sh "rr=$(aws cloudformation describe-stacks --stack-name project-dev  --region us-east-1 2>/dev/null)"
                     echo "-------------------------"    
-                    echo t1
+                    sh "echo $rr
                         //sh 'echo "\$?" '     
                     //def tt = echo "\$?"
                         //sh "rrr=$(echo $?)"
                     //sh "echo $rrr"
                     //echo tt
-                    if(!t1){
+                    if(!$rr){
                     if("${params.Desired_Status}"=="create"){      
                           
                             sh 'echo Creating ismaeelawsclitest2....'       
