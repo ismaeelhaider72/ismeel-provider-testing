@@ -25,12 +25,12 @@ pipeline {
                     try{    
                     stack = sh(script:"aws cloudformation describe-stacks --stack-name ismaeelawsclitest2  --region us-east-1  --query Stacks[0].StackStatus --output text ", returnStdout: true ) 
                     stack=true
-                        //echo stack
+                    // echo stack
                     }
                         // catch (err){
                         //     echo "stack not exist in this region"
                         // }
-                    catch (err){        
+                    catch (err){           // stack not existed
                     if("${params.Desired_Status}"=="create"){      
                           
                             sh 'echo Creating ismaeelawsclitest2....'       
@@ -40,34 +40,21 @@ pipeline {
                     if ("${params.Desired_Status}"=="delete" ){
                         sh "echo stack not exited"
                          }
-                    else{
-                        sh "echo stack existed"
-                       // stack=true
-                    }          
+                    // else{
+                    //     sh "echo stack existed"
+                        
+                    // }          
 
                     }
 
-                    if(stack){
+                    if(stack && "${params.Desired_Status}"=="delete" ){
                         sh "aws cloudformation delete-stack --stack-name ismaeelawsclitest2 --region us-east-1"
+                        sh "echo deleted Successfully"
                     }
 
                     
                      
-                    }                           
-                    // else{
-                    //     sh "echo cloudformation creation failed OR stack already Exist"
-                    //     }
-     
-                    // try{              
-                    // if (stack && "${params.Desired_Status}"=="delete" ) {  
-                        
-                    //     sh "aws cloudformation delete-stack --stack-name ismaeelawsclitest2 --region us-east-1"
-                    //     sh "echo Stack deleted Successfully"
-                    // }
-                    //     }
-                    // catch(err){
-                    //     sh "echo not stack available"
-                    // }                
+                    }                                         
                 
                                      
                 }
