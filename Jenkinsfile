@@ -46,7 +46,9 @@ pipeline {
                         sh "echo stack already exists"    
                     }
                 }
-                    
+                   catch(err){
+                       sh "echo can't deleted the stack"
+                   } 
                      
                     }                                         
                 
