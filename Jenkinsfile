@@ -36,22 +36,26 @@ pipeline {
                             sh "aws  cloudformation validate-template --template-body file://ismaeelstack.yml --region us-east-1  " 
                             sh "aws  cloudformation create-stack --stack-name  ismaeelawsclitest2 --template-body file://ismaeelstack.yml --region us-east-1  --parameters ParameterKey=ImageId,ParameterValue=${params.ImageId} ParameterKey=InstanceType,ParameterValue=${params.InstanceType} "  
                         }
-                        else{
-                            sh "echo creation failed"
-                        } 
+                        // else{
+                        //     sh "echo creation failed"
+                        // } 
                     }
                     catch (err){
-                        echo "stack exist in this region"
+                        echo "Creation Failed"
                     }                            
                     // else{
                     //     sh "echo cloudformation creation failed OR stack already Exist"
                     //     }
      
-                                  
+                    try{              
                     if (stack && "${params.Desired_Status}"=="delete" ) {  
                         
                         sh "aws cloudformation delete-stack --stack-name ismaeelawsclitest2 --region us-east-1"
                         sh "echo Stack deleted Successfully"
+                    }
+                        }
+                    catch(err){
+                        sh "echo not stack available"
                     }                
                 
                                      
