@@ -37,7 +37,7 @@ pipeline {
                         } 
                             
                     else{
-                        sh "stack Existed"
+                        sh "echo cloudformation creation failed OR stack already Exist"
                         }
      
                                   
