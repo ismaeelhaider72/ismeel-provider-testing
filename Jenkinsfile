@@ -28,7 +28,7 @@ pipeline {
                     sh 'echo "\$?" '
                         //sh "rrr=$(echo $?)"
                     //sh "echo $rrr"
-                    if(! (sh "\$?")){
+                    if(! "\$?"){
                     if("${params.Desired_Status}"=="create"){      
                           
                             sh 'echo Creating ismaeelawsclitest2....'       
