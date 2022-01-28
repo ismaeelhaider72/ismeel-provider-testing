@@ -25,11 +25,7 @@ pipeline {
                     try{    
                     stack = sh(script:"aws cloudformation describe-stacks --stack-name ismaeelawsclitest2  --region us-east-1  --query Stacks[0].StackStatus --output text ", returnStdout: true ) 
                     stack=true
-                    // echo stack
                     }
-                        // catch (err){
-                        //     echo "stack not exist in this region"
-                        // }
                     catch (err){           // stack not existed
                     if("${params.Desired_Status}"=="create"){      
                           
@@ -40,13 +36,8 @@ pipeline {
                     if ("${params.Desired_Status}"=="delete" ){
                         sh "echo stack not exited"
                          }
-                    // else{
-                    //   sh "echo stack already exist"  
-                    // }
-         
-
                     }
-
+                    try{
                     if(stack && "${params.Desired_Status}"=="delete" ){
                         sh "aws cloudformation delete-stack --stack-name ismaeelawsclitest2 --region us-east-1"
                         sh "echo deleted Successfully"
@@ -54,7 +45,7 @@ pipeline {
                     else{
                         sh "echo stack already exists"    
                     }
-
+                }
                     
                      
                     }                                         
