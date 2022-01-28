@@ -23,7 +23,7 @@ pipeline {
                     def stack = false
                     withCredentials([string(credentialsId: 'AccessKeyID', variable: 'AWS_ACCESS_KEY_ID'), string(credentialsId: 'SecretAccessKey', variable: 'AWS_SECRET_ACCESS_KEY')]) {  
                   // stack not existed
-                    sh "rr=$(aws cloudformation describe-stacks --stack-name project-dev  --region us-east-1 2>/dev/null)"
+                    sh "rr=\$(aws cloudformation describe-stacks --stack-name project-dev  --region us-east-1 2>/dev/null)"
                     echo "-------------------------"    
                     sh "echo $rr
                         //sh 'echo "\$?" '     
