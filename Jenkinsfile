@@ -42,6 +42,9 @@ pipeline {
                         sh "aws cloudformation delete-stack --stack-name ismaeelawsclitest2 --region us-east-1"
                         sh "echo deleted Successfully"
                     }
+                    if("${params.Desired_Status}"=="create"){ 
+                        sh "echo Stack alread existed"
+                    }
                 }
                    catch(err){
                        sh "echo can't deleted the stack"
