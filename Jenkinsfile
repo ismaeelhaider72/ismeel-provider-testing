@@ -31,7 +31,7 @@ pipeline {
                     if("${params.Desired_Status}"=="create"){      
                           
                             sh 'echo Creating ismaeelawsclitest2....'       
-                            sh "aws  cloudformation validate-template --template-body file://ismaeelstack.yml --region us-east-1  " 
+                            sh "aws  cloudformation validate-template --template-body file://ismaeelstack.yml --region us-east-1 &>/dev/null  " 
                             sh "aws  cloudformation create-stack --stack-name  ismaeelawsclitest2 --template-body file://ismaeelstack.yml --region us-east-1  --parameters ParameterKey=ImageId,ParameterValue=${params.ImageId} ParameterKey=InstanceType,ParameterValue=${params.InstanceType} "  
                         }
                     if ("${params.Desired_Status}"=="delete" ){
