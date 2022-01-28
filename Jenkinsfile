@@ -25,7 +25,7 @@ pipeline {
                     try{
                     stack = sh(script:"aws cloudformation describe-stacks --stack-name ismaeelawsclitest2  --region us-east-1   --output text ", returnStdout: true )                         
                     echo stack
-                    # stack=true
+                    stack=true
                     }
                     catch (err){           // stack not existed
                     if("${params.Desired_Status}"=="create"){      
