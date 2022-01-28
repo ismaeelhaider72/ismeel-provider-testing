@@ -27,6 +27,7 @@ pipeline {
                     sh "echo ----------------------"
                     sh "echo $stack"
                     stack=true
+                    sh "echo $stack"
                     }
                     catch (err){           // stack not existed
                     if("${params.Desired_Status}"=="create"){      
