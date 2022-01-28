@@ -27,7 +27,7 @@ pipeline {
                     stack = sh(script:"aws cloudformation describe-stacks --stack-name ismaeelawsclitest2  --region us-east-1  --query Stacks[0].StackStatus --output text ", returnStdout: true ) 
                     }
                     catch (error) {                       
-                    if("${params.Desired_Status}"=="create" && !stack){      
+                    if("${params.Desired_Status}"=="create" && stack){      
                         try {                           
                             sh 'echo Creating ismaeelawsclitest2....'       
                             sh "aws  cloudformation validate-template --template-body file://ismaeelstack.yml --region us-east-1  " 
