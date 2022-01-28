@@ -24,7 +24,9 @@ pipeline {
                     def rs= "null"
                     withCredentials([string(credentialsId: 'AccessKeyID', variable: 'AWS_ACCESS_KEY_ID'), string(credentialsId: 'SecretAccessKey', variable: 'AWS_SECRET_ACCESS_KEY')]) {  
                     try{    
-                    stack = sh(script:"aws cloudformation describe-stacks --stack-name ismaeelawsclitest2  --region us-east-1  --query Stacks[0].StackStatus --output text ", returnStdout: true )                        
+                    stack = sh(script:"aws cloudformation describe-stacks --stack-name ismaeelawsclitest2  --region us-east-1  --query Stacks[0].StackStatus --output text ", returnStdout: true ) 
+                    }
+                    catch (err) {                       
                     if("${params.Desired_Status}"=="create" && !stack){      
                         try {                           
                             sh 'echo Creating ismaeelawsclitest2....'       
@@ -38,7 +40,8 @@ pipeline {
                   }
                        else{
                             sh"echo stack [ismaeelawsclitest2] existed"
-                        }                   
+                        }
+                    }                       
                   if (stack && "${params.Desired_Status}"=="delete" ) {  
                       
                       sh "aws cloudformation delete-stack --stack-name ismaeelawsclitest2 --region us-east-1"
@@ -47,15 +50,10 @@ pipeline {
                 
                                      
                 }
-                catch (err) {
-                    sh "echo Stack not Existed"
-                }
+
       }
         }
                                         
         }
     }
-}
-
-
 }
