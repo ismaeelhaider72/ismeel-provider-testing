@@ -24,9 +24,9 @@ pipeline {
                     withCredentials([string(credentialsId: 'AccessKeyID', variable: 'AWS_ACCESS_KEY_ID'), string(credentialsId: 'SecretAccessKey', variable: 'AWS_SECRET_ACCESS_KEY')]) {  
                   // stack not existed
                     sh "! aws cloudformation describe-stacks --stack-name project-devs  --region us-east-1 &>/dev/null"
-                    sh "rrr=$(echo $?)"
-                    sh "echo $rrr"
-                    if(! $rrr){
+                    //sh "rrr=$(echo $?)"
+                    //sh "echo $rrr"
+                    if(! $?){
                     if("${params.Desired_Status}"=="create"){      
                           
                             sh 'echo Creating ismaeelawsclitest2....'       
