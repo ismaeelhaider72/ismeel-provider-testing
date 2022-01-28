@@ -43,7 +43,7 @@ pipeline {
                         sh "echo deleted Successfully"
                     }
                     if("${params.Desired_Status}"=="create"){ 
-                        sh "echo Stack alread existed"
+                        sh "echo Stack already existed"
                     }
                 }
                    catch(err){
