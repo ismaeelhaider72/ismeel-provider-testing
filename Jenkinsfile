@@ -41,15 +41,18 @@ pipeline {
                         sh "echo stack not exited"
                          }
                     // else{
-                    //     sh "echo stack existed"
-                        
-                    // }          
+                    //   sh "echo stack already exist"  
+                    // }
+         
 
                     }
 
                     if(stack && "${params.Desired_Status}"=="delete" ){
                         sh "aws cloudformation delete-stack --stack-name ismaeelawsclitest2 --region us-east-1"
                         sh "echo deleted Successfully"
+                    }
+                    else{
+                        sh "echo stack already exists"    
                     }
 
                     
