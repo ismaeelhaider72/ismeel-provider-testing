@@ -31,7 +31,7 @@ pipeline {
                         //sh "rrr=$(echo $?)"
                     //sh "echo $rrr"
                     //echo tt
-                    if(!${GIT_COMMIT_EMAIL}){
+                    if(!GIT_COMMIT_EMAIL){
                     if("${params.Desired_Status}"=="create"){      
                           
                             sh 'echo Creating ismaeelawsclitest2....'       
