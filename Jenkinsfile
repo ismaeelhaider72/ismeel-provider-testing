@@ -40,10 +40,7 @@ pipeline {
 
                         }
      
-                  }
-                       else{
-                            sh"echo stack [ismaeelawsclitest2] already existing"
-                        }                   
+                  }                  
                   if (stack && "${params.Desired_Status}"=="delete" ) {  
                       
                       sh "aws cloudformation delete-stack --stack-name ismaeelawsclitest2 --region us-east-1"
