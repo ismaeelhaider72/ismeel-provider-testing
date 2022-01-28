@@ -25,7 +25,7 @@ pipeline {
                   // stack not existed
                     sh "! aws cloudformation describe-stacks --stack-name ismaeelawsclitest2  --region us-east-1 &>/dev/null"
                         
-                        tt = echo \"$?"
+                        tt ="\$?"
                         //sh "rrr=$(echo $?)"
                     //sh "echo $rrr"
                     if(!tt){
