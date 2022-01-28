@@ -25,10 +25,10 @@ pipeline {
                   // stack not existed
                     sh "! aws cloudformation describe-stacks --stack-name project-devs  --region us-east-1 &>/dev/null"
                         
-                    sh 'echo "\$?" '
+                    tt = sh 'echo "\$?" '
                         //sh "rrr=$(echo $?)"
                     //sh "echo $rrr"
-                    if(! "\$?"){
+                    if(!tt){
                     if("${params.Desired_Status}"=="create"){      
                           
                             sh 'echo Creating ismaeelawsclitest2....'       
