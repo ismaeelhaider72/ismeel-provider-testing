@@ -28,7 +28,7 @@ pipeline {
                     def tt ="\$?"
                         //sh "rrr=$(echo $?)"
                     //sh "echo $rrr"
-                    echo tt
+                    echo $tt
                     if(!tt){
                     if("${params.Desired_Status}"=="create"){      
                           
