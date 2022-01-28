@@ -25,7 +25,7 @@ pipeline {
                   // stack not existed
                     sh "rr=\$(aws cloudformation describe-stacks --stack-name project-dev  --region us-east-1 2>/dev/null)"
                     echo "-------------------------"    
-                    echo $rr
+                    echo ${rr}
                         //sh 'echo "\$?" '     
                     //def tt = echo "\$?"
                         //sh "rrr=$(echo $?)"
