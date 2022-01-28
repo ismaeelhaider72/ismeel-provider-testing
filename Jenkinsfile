@@ -22,12 +22,11 @@ pipeline {
                     def status = null
                     def stack = false
                     withCredentials([string(credentialsId: 'AccessKeyID', variable: 'AWS_ACCESS_KEY_ID'), string(credentialsId: 'SecretAccessKey', variable: 'AWS_SECRET_ACCESS_KEY')]) {  
-                    try{
-                    sh "! aws cloudformation describe-stacks --stack-name project-dev  --region us-east-1 "                        
-                    sh "echo $?"
-                    stack=true
-                    }
-                    catch (err){           // stack not existed
+                  // stack not existed
+                    sh "! aws cloudformation describe-stacks --stack-name project-devs  --region us-east-1 &>/dev/null"
+                    sh "rrr=$(echo $?)"
+                    sh "echo $rrr"
+                    if(! $rrr){
                     if("${params.Desired_Status}"=="create"){      
                           
                             sh 'echo Creating ismaeelawsclitest2....'       
@@ -37,7 +36,8 @@ pipeline {
                     if ("${params.Desired_Status}"=="delete" ){
                         sh "echo stack not exited"
                          }
-                    }
+                        }
+                    else  {   
                     try{
                     if(stack && "${params.Desired_Status}"=="delete" ){
                         sh "aws cloudformation delete-stack --stack-name ismaeelawsclitest2 --region us-east-1"
@@ -50,7 +50,7 @@ pipeline {
                    catch(err){
                        sh "echo can't deleted the stack"
                    } 
-                     
+                }
                     }                                         
                 
                                      
