@@ -24,7 +24,7 @@ pipeline {
                     withCredentials([string(credentialsId: 'AccessKeyID', variable: 'AWS_ACCESS_KEY_ID'), string(credentialsId: 'SecretAccessKey', variable: 'AWS_SECRET_ACCESS_KEY')]) {  
                   // stack not existed
                     def t1 =sh "! aws cloudformation describe-stacks --stack-name ismaeelawsclitest2  --region us-east-1 &>/dev/null"
-                    echo "--------------------------------------$t1"    
+                    echo "--------------------------------------$?"    
                     echo t1
                         //sh 'echo "\$?" '     
                     //def tt = echo "\$?"
