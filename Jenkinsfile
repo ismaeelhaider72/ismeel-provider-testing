@@ -26,7 +26,7 @@ pipeline {
                     try{    
                     GIT_COMMIT_EMAIL = sh ( script: 'aws cloudformation describe-stacks --stack-name ismaeelawsclitest2 --region us-east-1 ',returnStdout: true )
                     echo "-------------------------"    
-                    echo "Git committer email: ${GIT_COMMIT_EMAIL}"
+                  
                      }
                         catch(error){
                             echo "helllll"
