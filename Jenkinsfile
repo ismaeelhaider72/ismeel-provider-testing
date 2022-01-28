@@ -23,9 +23,14 @@ pipeline {
                     def stack = false
                     withCredentials([string(credentialsId: 'AccessKeyID', variable: 'AWS_ACCESS_KEY_ID'), string(credentialsId: 'SecretAccessKey', variable: 'AWS_SECRET_ACCESS_KEY')]) {  
                   // stack not existed
-                    GIT_COMMIT_EMAIL = sh ( script: 'aws cloudformation describe-stacks --stack-name ismaeelawsclitest2 --query Stacks[0].StackStatus --region us-east-1 2>/dev/null ',returnStdout: true ).trim()
+                        try{    
+                    GIT_COMMIT_EMAIL = sh ( script: 'aws cloudformation describe-stacks --stack-name ismaeelawsclitest2 --region us-east-1 ',returnStdout: true )
                     echo "-------------------------"    
                     echo "Git committer email: ${GIT_COMMIT_EMAIL}"
+                        }
+                        catch{
+                            echo "helllll"
+                        }
                         //sh 'echo "\$?" '     
                     //def tt = echo "\$?"
                         //sh "rrr=$(echo $?)"
